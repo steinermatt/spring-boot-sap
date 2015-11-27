@@ -1,7 +1,8 @@
 package com.mlesniak.sap.playground;
 
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.context.web.SpringBootServletInitializer;
 
 /**
  * Application entry point.
@@ -9,8 +10,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author Michael Lesniak (mlesniak@micromata.de)
  */
 @SpringBootApplication
-public class Main {
-    public static void main(String[] args) {
-        SpringApplication.run(Main.class, args);
+public class Main extends SpringBootServletInitializer {
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(Main.class);
     }
 }

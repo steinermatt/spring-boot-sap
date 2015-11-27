@@ -7,6 +7,8 @@
     <groupId>com.mlesniak.sap</groupId>
     <artifactId>playground</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
+
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -15,10 +17,28 @@
 
 
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>1.7</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!--Handling of Tomcat 7, see https://docs.spring.io/spring-boot/docs/current/reference/html/howto-embedded-servlet-containers.html#howto-use-tomcat-7-->
+        <tomcat.version>7.0.59</tomcat.version>
     </properties>
 
+    <build>
+        <finalName>server</finalName>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.3</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
     <dependencies>
         <dependency>
@@ -31,10 +51,19 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
-        <!--For local testing.-->
+        <!--Since we deploy to a Tomcat, we do not need this dependency.-->
         <dependency>
-            <groupId>org.apache.derby</groupId>
-            <artifactId>derby</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--Logging provided by Tomcat.-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.12</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 </project>
