@@ -1,9 +1,11 @@
 package com.mlesniak.sap.playground;
 
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,31 +15,25 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Michael Lesniak (mlesniak@micromata.de)
  */
 @RestController
-@RequestMapping("/rest")
+@RequestMapping("/rest/text")
 public class MainController {
     @Autowired
-    private TextRepository textRepository;
+    private TextService textService;
 
-    @RequestMapping("/time")
-    public String time() {
-        return new Date().toString();
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    public ResponseEntity<Long> save(@RequestParam("text") String text) {
+        Long id = textService.save(text);
+        return new ResponseEntity<>(id, HttpStatus.CREATED);
     }
 
-    // TODO ML Use a dedicated service.
-    // TODO ML Return correct HTTP status code.
-    // TODO ML This should become a HTTP POST later; currently now solely GET for easier testing.
-    @RequestMapping("/add")
-    public String addEntry(@RequestParam("text") String text) {
-        TextEntry textEntry = new TextEntry();
-        textEntry.setText(text);
-        textRepository.save(textEntry);
-        return "OK";
+    @RequestMapping("/")
+    public Iterable<TextEntry> find() {
+        return textService.list();
     }
 
-    // TODO ML This should become the root endpoint for this entity.
-    @RequestMapping("/list")
-    public Iterable<TextEntry> listEntries() {
-        return textRepository.findAll();
+    @RequestMapping("/{id}")
+    public TextEntry get(@PathVariable("id") Long id) {
+        return textService.get(id);
     }
 }
 
