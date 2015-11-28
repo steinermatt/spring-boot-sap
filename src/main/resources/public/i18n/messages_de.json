@@ -1,6 +1,7 @@
 {
   "menu.name": "Schwarzes Brett",
   "menu.language": "Sprache",
+  "menu.documentation": "API Dokumentation",
   "menu.source": "Quellcode",
   "menu.author": "Autor",
   "menu.version": "Version",

@@ -1,6 +1,7 @@
 {
   "menu.name": "Message board",
   "menu.language": "Language",
+  "menu.documentation": "API documentation",
   "menu.source": "Source code",
   "menu.author": "Author",
   "menu.version": "Version",

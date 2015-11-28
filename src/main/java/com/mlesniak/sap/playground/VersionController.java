@@ -6,9 +6,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+import com.wordnik.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -21,7 +23,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class VersionController {
     private static final Logger LOG = LoggerFactory.getLogger(VersionController.class);
 
-    @RequestMapping("/version")
+    @ApiOperation("Provides build information")
+    @RequestMapping(value = "/version", method = RequestMethod.GET)
     public Map<String, String> version() throws IOException {
         return getVersionInformation();
     }

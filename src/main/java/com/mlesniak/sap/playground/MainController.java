@@ -1,5 +1,6 @@
 package com.mlesniak.sap.playground;
 
+import com.wordnik.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ public class MainController {
     @Autowired
     private TextService textService;
 
+    @ApiOperation("Stores a new text entry")
     @RequestMapping(value = "", method = RequestMethod.POST)
     public ResponseEntity<Long> save(@RequestBody String text) {
         LOG.debug("Request to POST:/");
@@ -35,13 +37,15 @@ public class MainController {
         }
     }
 
-    @RequestMapping("")
+    @ApiOperation("Retrieve the list of all stored entries")
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public Iterable<TextEntry> find() {
         LOG.debug("Request to GET:/");
         return textService.list();
     }
 
-    @RequestMapping("/{id}")
+    @ApiOperation("Retrieve a single entry for the given id")
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String get(@PathVariable("id") Long id) {
         LOG.debug("Request to GET:/{}", id);
         return textService.get(id).getText();
