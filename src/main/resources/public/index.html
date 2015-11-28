@@ -5,26 +5,45 @@
     <title>Demo page</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.2/angular.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body ng-controller="DemoCtrl">
 
-<form action="#" ng-submit="submit()">
-    <input ng-model="input" value="text" autofocus>
-    <input type="submit">
-</form>
 
-<p ng-repeat="entry in texts | orderBy:id : true">
-    {{entry.text}}
-</p>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Message board</a>
+            <ul class="nav navbar-nav">
+                <li><a href="https://github.com/mlesniak/spring-boot-sap">Source code</a></li>
+                <li><a href="https://www.xing.com/profile/Michael_Lesniak">Author</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
+<div class="container">
+    <form action="#" ng-submit="submit()" class="form">
+        <div class="form-group">
+            <input class="form-control" ng-model="input" value="text" autofocus placeholder="Enter your message...">
+        </div>
+    </form>
 
+    <hr/>
+
+    <table class="table table-striped table-bordered">
+        <tr ng-repeat="entry in texts | orderBy:id : true">
+            <td>{{entry.text}}</td>
+        </tr>
+    </table>
+
+</div>
 </body>
 
 <script>
     var demoApp = angular.module('messageBoard', []);
     demoApp.controller('DemoCtrl', function ($scope, $http) {
         function load() {
-            // Initialize fields.
             $http.get("rest/text").success(function (data) {
                 $scope.texts = data;
             });
