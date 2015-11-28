@@ -1,10 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="demoApp">
 <head>
     <meta charset="UTF-8">
-    <title>Example page</title>
+    <title>Demo page</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.2/angular.min.js"></script>
 </head>
-<body>
-Hello, World!
+<body ng-controller="DemoCtrl">
+Hello, {{name}}
 </body>
+
+<script>
+    var demoApp = angular.module('demoApp', []);
+    demoApp.controller('DemoCtrl', function ($scope) {
+        $scope.name = "World";
+    });
+</script>
 </html>
