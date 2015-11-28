@@ -8,6 +8,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate/2.8.1/angular-translate.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.14.3/ui-bootstrap-tpls.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate-loader-static-files/2.8.1/angular-translate-loader-static-files.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.2/angular-animate.js"></script>
     <script src="js/application.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/main.css">
@@ -54,8 +55,8 @@
 
     <!--Output-->
     <hr/>
-    <table class="table table-striped table-bordered">
-        <tr ng-repeat="entry in texts | orderBy:id : true">
+    <table class="table table-striped table-bordered" ng-if="texts.length">
+        <tr ng-repeat="entry in texts | orderBy:id : true" class="repeated-item">
             <td>{{entry.text}}</td>
         </tr>
     </table>

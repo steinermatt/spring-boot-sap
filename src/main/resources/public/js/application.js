@@ -9,7 +9,8 @@
 var demoApp = angular.module('messageBoard', [
     'ngResource',
     'pascalprecht.translate',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'ngAnimate'
 ]);
 
 // Create resource for RESTful endpoint.

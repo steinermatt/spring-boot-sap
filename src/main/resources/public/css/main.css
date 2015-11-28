@@ -2,3 +2,19 @@
 .navbar {
     border-radius: 0;
 }
+
+/*Add animation*/
+.repeated-item.ng-enter {
+    animation-name: add;
+    animation-duration: 1s;
+}
+
+@keyframes add {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
