@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Demo page</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.2/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.16/angular-resource.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/main.css">
 </head>
@@ -42,10 +43,16 @@
 </body>
 
 <script>
-    var demoApp = angular.module('messageBoard', []);
-    demoApp.controller('DemoCtrl', function ($scope, $http) {
+    var demoApp = angular.module('messageBoard', ['ngResource']);
+
+    // Create resource for RESTful endpoint.
+    demoApp.factory('Entry', function($resource) {
+        return $resource('rest/text/:id');
+    });
+
+    demoApp.controller('DemoCtrl', function ($scope, Entry) {
         function load() {
-            $http.get("rest/text").success(function (data) {
+            Entry.query(function (data) {
                 $scope.texts = data;
             });
         }
@@ -57,14 +64,14 @@
             }
 
             // Send raw data to the endpoint.
-            $http.post("rest/text", input).success(function (data) {
+            Entry.save(input, function (data) {
                 var text = {
                     "text": input,
                     "id": data
                 };
                 $scope.texts.push(text);
+                $scope.input = '';
             });
-            $scope.input = '';
         };
 
         // Initial loading.
