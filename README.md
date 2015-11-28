@@ -1,17 +1,31 @@
 # Introduction
 
-This is an example of a spring-boot application with JPA which works on SAP's HCP platform.
+This is an example of a spring-boot application with JPA and Angular which works on SAP's HCP platform.
+ 
+## Initial deployment
+ 
+Build the deployable .war-file with 
+ 
+    mvn -P production clean package
+    
+If you configure your server in the HCP frontend, do not forget to set
+    
+    -Dspring.profiles.active=production
+    
+otherwise no database connection can be established.    
  
  
-TODO ML Provide description for different application profiles and neo.sh example
+## Local development
+ 
+Start local development by simply executing ```com.mlesniak.sap.playground.Main```.
+    
+    
 
-  mvn -P production clean package
-  -Dspring.profiles.active=production
-  
-  neo.sh explanation w/ properties
-  
-Add Logging  
-i18n in angular
-refactor js code into own files
-use resource instead of http in angular
-use correct post content instead of url parameters
+## TODOs
+ 
+- Better documentation of initial and continous deployment; see scripts/update-production.sh for an example
+- Add Logging  
+- I18N in Angular
+- Refactor JavaScript code into separate files
+- Use $resource instead of $http
+- Use correct HTTP POST content instead of URL parameters
