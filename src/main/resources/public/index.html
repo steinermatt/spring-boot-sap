@@ -30,7 +30,8 @@
 
             <ul class="nav navbar-nav navbar-right" class="dropdown-toggle" ng-controller="LanguageCtrl">
                 <li class="dropdown" uib-dropdown>
-                    <a uib-dropdown-toggle data-toggle="dropdown">Language <span class="caret"></span></a>
+                    <a uib-dropdown-toggle data-toggle="dropdown">{{'menu.language' | translate}} <span
+                            class="caret"></span></a>
                     <ul class="uib-dropdown-menu">
                         <li ng-repeat="item in items"><a href="#" ng-click="use(item)">{{'lang.' + item |
                             translate}}</a></li>
