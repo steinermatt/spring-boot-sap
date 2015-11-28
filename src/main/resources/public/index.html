@@ -36,8 +36,12 @@
                 return;
             }
             console.log(input);
-            $http.post("rest/text?text=" + encodeURI(input), {}).success(function () {
-                load();
+            $http.post("rest/text?text=" + encodeURI(input), {}).success(function (data) {
+                var text = {
+                    "text": input,
+                    "id": data
+                };
+                $scope.texts.push(text);
             });
             $scope.input = '';
         };
