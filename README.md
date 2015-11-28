@@ -25,7 +25,6 @@ Start local development by simply executing ```com.mlesniak.sap.playground.Main`
 ## TODOs
  
 - Better documentation of initial and continous deployment; see scripts/update-production.sh for an example
-- Add Logging  
 - I18N in Angular
 - Refactor JavaScript code into separate files
 - Use $resource instead of $http

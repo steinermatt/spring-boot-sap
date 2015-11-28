@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,12 +19,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/rest/")
 public class VersionController {
+    private static final Logger LOG = LoggerFactory.getLogger(VersionController.class);
+
     @RequestMapping("/version")
     public Map<String, String> version() throws IOException {
         return getVersionInformation();
     }
 
     private Map<String, String> getVersionInformation() throws IOException {
+        LOG.info("Version request");
         Map<String, String> info = new HashMap<>();
         InputStream is = VersionController.class.getResourceAsStream("/git.properties");
         if (is == null) {

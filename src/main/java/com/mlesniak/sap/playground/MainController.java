@@ -1,5 +1,7 @@
 package com.mlesniak.sap.playground;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,22 +19,27 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/rest/text")
 public class MainController {
+    private static final Logger LOG = LoggerFactory.getLogger(MainController.class);
+
     @Autowired
     private TextService textService;
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     public ResponseEntity<Long> save(@RequestBody String text) {
+        LOG.debug("Request to POST:/");
         Long id = textService.save(text);
         return new ResponseEntity<>(id, HttpStatus.CREATED);
     }
 
     @RequestMapping("")
     public Iterable<TextEntry> find() {
+        LOG.debug("Request to GET:/");
         return textService.list();
     }
 
     @RequestMapping("/{id}")
     public String get(@PathVariable("id") Long id) {
+        LOG.debug("Request to GET:/{}", id);
         return textService.get(id).getText();
     }
 }
