@@ -1,3 +1,9 @@
 {
-  "inputMessage": "Enter message"
+  "menu.name": "Message board",
+  "menu.source": "Source code",
+  "menu.author": "Author",
+  "menu.version": "Version",
+  "inputMessage": "Enter message",
+  "lang.en": "English",
+  "lang.de": "German"
 }

@@ -18,20 +18,21 @@
 <nav class="navbar  navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">Message board</a>
+            <a class="navbar-brand" href="#" translate>menu.name</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="https://github.com/mlesniak/spring-boot-sap">Source code</a></li>
-                <li><a href="https://www.xing.com/profile/Michael_Lesniak">Author</a></li>
-                <li><a href="rest/version">Version</a></li>
+                <li><a href="https://github.com/mlesniak/spring-boot-sap" translate>menu.source</a></li>
+                <li><a href="https://www.xing.com/profile/Michael_Lesniak" translate>menu.author</a></li>
+                <li><a href="rest/version" translate>menu.version</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right" class="dropdown-toggle" ng-controller="LanguageCtrl">
                 <li class="dropdown" uib-dropdown>
                     <a uib-dropdown-toggle data-toggle="dropdown">Language <span class="caret"></span></a>
                     <ul class="uib-dropdown-menu">
-                        <li ng-repeat="item in items"><a href="#" ng-click="use(item)">{{item}}</a></li>
+                        <li ng-repeat="item in items"><a href="#" ng-click="use(item)">{{'lang.' + item |
+                            translate}}</a></li>
                     </ul>
                 </li>
                 >

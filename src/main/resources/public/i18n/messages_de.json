@@ -1,3 +1,9 @@
 {
-  "inputMessage": "Nachricht eingeben"
+  "menu.name": "Schwarzes Brett",
+  "menu.source": "Quellcode",
+  "menu.author": "Autor",
+  "menu.version": "Version",
+  "inputMessage": "Nachricht eingeben",
+  "lang.en": "Englisch",
+  "lang.de": "Deutsch"
 }

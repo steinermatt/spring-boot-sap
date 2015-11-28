@@ -28,6 +28,7 @@ demoApp.config(['$translateProvider', function ($translateProvider) {
 
 
 demoApp.controller('LanguageCtrl', function ($scope, $translate) {
+    // Available languages
     $scope.items = [
         'de',
         'en'
