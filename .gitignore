@@ -64,3 +64,4 @@ target/
 
 
 src/main/resources/git.properties
+derby.log
