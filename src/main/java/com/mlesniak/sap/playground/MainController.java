@@ -27,8 +27,12 @@ public class MainController {
     @RequestMapping(value = "", method = RequestMethod.POST)
     public ResponseEntity<Long> save(@RequestBody String text) {
         LOG.debug("Request to POST:/");
-        Long id = textService.save(text);
-        return new ResponseEntity<>(id, HttpStatus.CREATED);
+        try {
+            Long id = textService.save(text);
+            return new ResponseEntity<>(id, HttpStatus.CREATED);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @RequestMapping("")

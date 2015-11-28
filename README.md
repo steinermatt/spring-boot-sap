@@ -25,4 +25,3 @@ Start local development by simply executing ```com.mlesniak.sap.playground.Main`
 ## TODOs
  
 - Better documentation of initial and continous deployment; see scripts/update-production.sh for an example
-- Check that only the maximal size of text is entered (255 chars, currently)

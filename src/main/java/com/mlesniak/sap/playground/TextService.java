@@ -14,10 +14,18 @@ import org.springframework.stereotype.Service;
 public class TextService {
     private static final Logger LOG = LoggerFactory.getLogger(TextService.class);
 
+    /** Default length of a VARCHAR. */
+    private static final int MAX_LENGTH = 255;
+
     @Autowired
     private TextRepository textRepository;
 
     public Long save(String text) {
+        if (text.length() > MAX_LENGTH) {
+            LOG.error("Text too large. length={}", text.length());
+            throw new IllegalArgumentException("Text too large");
+        }
+
         LOG.info("Store text={}", text);
         TextEntry textEntry = new TextEntry();
         textEntry.setText(text);
