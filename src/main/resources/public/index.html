@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="demoApp">
+<html lang="en" ng-app="messageBoard">
 <head>
     <meta charset="UTF-8">
     <title>Demo page</title>
@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 </head>
 <body ng-controller="DemoCtrl">
+
+<form action="#" ng-submit="submit()">
+    <input ng-model="input" value="text" autofocus>
+    <input type="submit">
+</form>
 
 <p ng-repeat="entry in texts | orderBy:id : true">
     {{entry.text}}
@@ -16,11 +21,29 @@
 </body>
 
 <script>
-    var demoApp = angular.module('demoApp', []);
+    var demoApp = angular.module('messageBoard', []);
     demoApp.controller('DemoCtrl', function ($scope, $http) {
-        $http.get("rest/text").success(function (data) {
-            $scope.texts = data;
-        });
+        function load() {
+            // Initialize fields.
+            $http.get("rest/text").success(function (data) {
+                $scope.texts = data;
+            });
+        }
+
+        $scope.submit = function () {
+            var input = $scope.input;
+            if (input == '') {
+                return;
+            }
+            console.log(input);
+            $http.post("rest/text?text=" + encodeURI(input), {}).success(function () {
+                load();
+            });
+            $scope.input = '';
+        };
+
+        // Initial loading.
+        load();
     });
 </script>
 </html>

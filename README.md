@@ -9,3 +9,5 @@ TODO ML Provide description for different application profiles and neo.sh exampl
   -Dspring.profiles.active=production
   
   neo.sh explanation w/ properties
+  
+Add Logging  
