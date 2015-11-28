@@ -19,14 +19,10 @@ demoApp.factory('Entry', function ($resource) {
 
 // I18N
 demoApp.config(['$translateProvider', function ($translateProvider) {
-    $translateProvider.translations('en', {
-        'inputMessage': 'Enter message'
+    $translateProvider.useStaticFilesLoader({
+        prefix: 'i18n/messages_',
+        suffix: '.json'
     });
-
-    $translateProvider.translations('de', {
-        'inputMessage': 'Nachricht eingeben'
-    });
-
     $translateProvider.preferredLanguage('en');
 }]);
 
