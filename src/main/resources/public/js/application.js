@@ -6,14 +6,43 @@
  * @author Michael Lesniak (mlesniak@micromata.de)
  */
 
-var demoApp = angular.module('messageBoard', ['ngResource']);
+var demoApp = angular.module('messageBoard', [
+    'ngResource',
+    'pascalprecht.translate',
+    'ui.bootstrap'
+]);
 
 // Create resource for RESTful endpoint.
 demoApp.factory('Entry', function ($resource) {
     return $resource('rest/text/:id');
 });
 
-demoApp.controller('DemoCtrl', function ($scope, Entry) {
+// I18N
+demoApp.config(['$translateProvider', function ($translateProvider) {
+    $translateProvider.translations('en', {
+        'inputMessage': 'Enter message'
+    });
+
+    $translateProvider.translations('de', {
+        'inputMessage': 'Nachricht eingeben'
+    });
+
+    $translateProvider.preferredLanguage('en');
+}]);
+
+
+demoApp.controller('LanguageCtrl', function ($scope, $translate) {
+    $scope.items = [
+        'de',
+        'en'
+    ];
+
+    $scope.use = function (lang) {
+        $translate.use(lang);
+    }
+});
+
+demoApp.controller('DemoCtrl', function ($scope, Entry, $translate) {
     function load() {
         Entry.query(function (data) {
             $scope.texts = data;
