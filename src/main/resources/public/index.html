@@ -4,15 +4,23 @@
     <meta charset="UTF-8">
     <title>Demo page</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.2/angular.min.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 </head>
 <body ng-controller="DemoCtrl">
-Hello, {{name}}
+
+<p ng-repeat="entry in texts | orderBy:id : true">
+    {{entry.text}}
+</p>
+
+
 </body>
 
 <script>
     var demoApp = angular.module('demoApp', []);
-    demoApp.controller('DemoCtrl', function ($scope) {
-        $scope.name = "World";
+    demoApp.controller('DemoCtrl', function ($scope, $http) {
+        $http.get("rest/text").success(function (data) {
+            $scope.texts = data;
+        });
     });
 </script>
 </html>
