@@ -12,6 +12,7 @@ Backend:
 - Production profile with script-based hot-update functionality
 - JPA (w/ Hibernate) using HANA as the database
 - RESTful API
+- API documentation with swagger
 
 Frontend:
 
