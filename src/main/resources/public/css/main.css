@@ -1,9 +1,4 @@
-body {
-    padding: 50px;
-    padding-top: 80px;
-}
-
-.starter-template {
-    padding: 40px 15px;
-    text-align: center;
+/*No rounded corners*/
+.navbar {
+    border-radius: 0;
 }
