@@ -5,12 +5,13 @@
     <title>Demo page</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.2/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.16/angular-resource.min.js"></script>
+    <script src="js/application.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body ng-controller="DemoCtrl">
 
-
+<!--Navigation bar-->
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
@@ -25,14 +26,16 @@
 </nav>
 
 <div class="container">
+
+    <!--Input-->
     <form action="#" ng-submit="submit()" class="form">
         <div class="form-group">
             <input class="form-control" ng-model="input" value="text" autofocus placeholder="Enter your message...">
         </div>
     </form>
 
+    <!--Output-->
     <hr/>
-
     <table class="table table-striped table-bordered">
         <tr ng-repeat="entry in texts | orderBy:id : true">
             <td>{{entry.text}}</td>
@@ -41,41 +44,4 @@
 
 </div>
 </body>
-
-<script>
-    var demoApp = angular.module('messageBoard', ['ngResource']);
-
-    // Create resource for RESTful endpoint.
-    demoApp.factory('Entry', function($resource) {
-        return $resource('rest/text/:id');
-    });
-
-    demoApp.controller('DemoCtrl', function ($scope, Entry) {
-        function load() {
-            Entry.query(function (data) {
-                $scope.texts = data;
-            });
-        }
-
-        $scope.submit = function () {
-            var input = $scope.input;
-            if (input == '') {
-                return;
-            }
-
-            // Send raw data to the endpoint.
-            Entry.save(input, function (data) {
-                var text = {
-                    "text": input,
-                    "id": data
-                };
-                $scope.texts.push(text);
-                $scope.input = '';
-            });
-        };
-
-        // Initial loading.
-        load();
-    });
-</script>
 </html>
