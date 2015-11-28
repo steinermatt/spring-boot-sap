@@ -8,5 +8,5 @@
 set -e
 
 mvn -P production clean package
-neo.sh hot-update config.properties --synchronous
+neo.sh hot-update config.properties --synchronous $*
 
