@@ -55,8 +55,9 @@
             if (input == '') {
                 return;
             }
-            console.log(input);
-            $http.post("rest/text?text=" + encodeURI(input), {}).success(function (data) {
+
+            // Send raw data to the endpoint.
+            $http.post("rest/text", input).success(function (data) {
                 var text = {
                     "text": input,
                     "id": data

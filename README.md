@@ -29,4 +29,3 @@ Start local development by simply executing ```com.mlesniak.sap.playground.Main`
 - I18N in Angular
 - Refactor JavaScript code into separate files
 - Use $resource instead of $http
-- Use correct HTTP POST content instead of URL parameters
