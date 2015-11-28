@@ -1,7 +1,5 @@
 package com.mlesniak.sap.playground;
 
-import javax.sql.DataSource;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +24,6 @@ public class MainController {
     @Autowired
     private TextService textService;
 
-    @Autowired
-    private DataSource dataSource;
-
     @RequestMapping(value = "", method = RequestMethod.POST)
     public ResponseEntity<Long> save(@RequestParam("text") String text) {
         Long id = textService.save(text);
@@ -37,7 +32,6 @@ public class MainController {
 
     @RequestMapping("")
     public Iterable<TextEntry> find() {
-        LOG.error("ds:{}", dataSource);
         return textService.list();
     }
 
