@@ -11,3 +11,7 @@ TODO ML Provide description for different application profiles and neo.sh exampl
   neo.sh explanation w/ properties
   
 Add Logging  
+i18n in angular
+refactor js code into own files
+use resource instead of http in angular
+use correct post content instead of url parameters
