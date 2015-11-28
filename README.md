@@ -25,5 +25,4 @@ Start local development by simply executing ```com.mlesniak.sap.playground.Main`
 ## TODOs
  
 - Better documentation of initial and continous deployment; see scripts/update-production.sh for an example
-- I18N in Angular
 - Fancy animation on adding text
