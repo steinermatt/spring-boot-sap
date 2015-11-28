@@ -61,3 +61,6 @@ crashlytics-build.properties
 hs_err_pid*
 
 target/
+
+
+src/main/resources/git.properties
