@@ -1,15 +1,16 @@
 package com.mlesniak.sap.playground;
 
-import com.mangofactory.swagger.configuration.SpringSwaggerConfig;
-import com.mangofactory.swagger.models.dto.ApiInfo;
-import com.mangofactory.swagger.plugin.EnableSwagger;
-import com.mangofactory.swagger.plugin.SwaggerSpringMvcPlugin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
+
+import com.mangofactory.swagger.configuration.SpringSwaggerConfig;
+import com.mangofactory.swagger.models.dto.ApiInfo;
+import com.mangofactory.swagger.plugin.EnableSwagger;
+import com.mangofactory.swagger.plugin.SwaggerSpringMvcPlugin;
 
 /**
  * Application entry point.
@@ -28,7 +29,12 @@ public class Main extends SpringBootServletInitializer {
     }
 
     public static void main(String[] args) {
-        new SpringApplication(Main.class).run(args);
+        
+    	SpringApplication app = new SpringApplication(Main.class);
+    	
+    	app.addInitializers(new EnvironmentContextInitializer());
+    	
+    	app.run(args);
     }
 
     /**
